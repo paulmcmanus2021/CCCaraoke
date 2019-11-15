@@ -22,6 +22,8 @@ class TestRoom < MiniTest::Test
     @guest3 = Guest.new("Billy",5,"Uptown Girl")
     @guest4 = Guest.new("Bruno",6,"Uptown Funk")
     @guest5 = Guest.new("Andre",7,"Hey Ya")
+
+    @guests = []
   end
 
   def test_can_get_room
@@ -36,6 +38,21 @@ class TestRoom < MiniTest::Test
     assert_equal("Andre", @guest5.name)
   end
 
+  def test_check_occupancy
+    @room1.check_occupancy
+    assert_equal(0,@guests.length)
+  end
+
+  def test_check_in_guest
+    @room2.check_in_guest(@guest2)
+    assert_equal(1, @room2.guests.length)
+  end
+
+  def test_check_out_guest
+    @room2.check_in_guest(@guest2)
+    @room2.check_out_guest(@guest2)
+    assert_equal(0, @room2.guests.length)
+  end
 
 
 
