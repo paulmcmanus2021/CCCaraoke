@@ -1,7 +1,7 @@
 class Room
 
   attr_reader :name, :entry_fee, :max_occupancy, :guests
-  attr_writer :playlist
+  attr_accessor :playlist
 
   def initialize(name,entry_fee,max_occupancy)
     @name = name
@@ -23,6 +23,11 @@ class Room
   def check_out_guest(guest)
     @guests.delete(guest)
     @guests.length
+  end
+
+  def add_song_to_room(song)
+    @playlist.push(song)
+    @playlist.length
   end
 #
 end

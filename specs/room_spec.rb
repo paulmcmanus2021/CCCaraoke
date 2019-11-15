@@ -54,6 +54,11 @@ class TestRoom < MiniTest::Test
     assert_equal(0, @room2.guests.length)
   end
 
+  def test_add_song_to_room
+    @room3.add_song_to_room(@song4)
+    assert_equal(1, @room3.playlist.length)
+  end
+
 
 
 
