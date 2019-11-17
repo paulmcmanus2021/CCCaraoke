@@ -27,6 +27,7 @@ class Room
     # If the room has space and can afford = true
     # add them to the room
     @guests.push(guest)
+    guest.remove_money(@entry_fee)
   end
 
   def check_out_guest(guest)

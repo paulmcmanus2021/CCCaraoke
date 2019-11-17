@@ -74,6 +74,18 @@ class TestRoom < MiniTest::Test
     assert_equal(@room3.guests.length, @room3.max_occupancy)
   end
 
+#put this in after git push
+  def test_remove_money
+    #given a guest enters a room
+    @room2.check_in_guest(@guest4)
+    #money leaves the guest
+    @guest4.remove_money(@room2.entry_fee)
+    #the guests money should be money - entrance_fee
+    assert_equal(3, @guest4.money)
+  end
+
+  # This last test, seems to be removing money twice. Unsure why.
+
 
 
 

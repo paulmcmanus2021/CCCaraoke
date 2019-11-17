@@ -9,6 +9,10 @@ attr_accessor :money
     @fave_song = fave_song
   end
 
+  def remove_money(cost)
+    price = @money -= cost
+  end
+
 
 
 
