@@ -16,18 +16,33 @@ class Room
   end
 
   def check_in_guest(guest)
+    # Ensure we are not at maximum occupancy
+    if @guests.length >= @max_occupancy
+      p "No more space."
+      return
+    end
+
+    # Ensure the guest has enough money to enter
+
+
+    # If the room has space and the guest has enough money
+    # add them to the room
     @guests.push(guest)
-    @guests.length
+
   end
 
   def check_out_guest(guest)
     @guests.delete(guest)
-    @guests.length
   end
 
   def add_song_to_room(song)
     @playlist.push(song)
     @playlist.length
   end
+
+
+
+
+
 #
 end

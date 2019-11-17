@@ -3,6 +3,7 @@ require('minitest/reporters')
 require_relative('../song.rb')
 require_relative('../room.rb')
 require_relative('../guest.rb')
+require('pry')
 
 Minitest::Reporters.use! Minitest::Reporters::SpecReporter.new
 
@@ -17,12 +18,12 @@ class TestRoom < MiniTest::Test
     @song3 = Song.new("Uptown Girl","Billy Joel")
     @song4 = Song.new("Uptown Funk","Bruno Mars")
     @song5 = Song.new("Hey Ya","Outkast")
-    @guest1 = Guest.new("Nick",10,"I Want It That Way")
+    @guest1 = Guest.new("Nick",4,"I Want It That Way")
     @guest2 = Guest.new("Ronnie",8,"Sweet Home Alabama")
     @guest3 = Guest.new("Billy",5,"Uptown Girl")
     @guest4 = Guest.new("Bruno",6,"Uptown Funk")
     @guest5 = Guest.new("Andre",7,"Hey Ya")
-
+    @playlist = []
     @guests = []
   end
 
@@ -45,19 +46,47 @@ class TestRoom < MiniTest::Test
 
   def test_check_in_guest
     @room2.check_in_guest(@guest2)
-    assert_equal(1, @room2.guests.length)
+    assert_equal(@room2.guests[0], @guest2)
   end
 
+  # def test_check_can_afford_entry_fee__false
+  #   #set up a room with higher entry fee than guest money
+  #   @room3.check_can_afford_entry_fee(@guest5)
+  #   assert_equal(@guest5.money,@room3.entry_fee)
+  #
+  # end
+  #
+  # def test_check_in_guest_entry_fee__true
+  #
+  # end
+
   def test_check_out_guest
+    @room2.check_in_guest(@guest1)
     @room2.check_in_guest(@guest2)
+    @room2.check_in_guest(@guest3)
     @room2.check_out_guest(@guest2)
-    assert_equal(0, @room2.guests.length)
+    assert_equal(@guest1, @room2.guests[0])
+    assert_equal(@guest3, @room2.guests[1])
   end
 
   def test_add_song_to_room
     @room3.add_song_to_room(@song4)
-    assert_equal(1, @room3.playlist.length)
+    assert_equal(@song4.title, @room3.playlist[0].title)
   end
+
+def test_max_occupancy
+  # Fill room to max max_occupancy
+  @room3.check_in_guest(@guest1)
+  @room3.check_in_guest(@guest2)
+  @room3.check_in_guest(@guest3)
+  @room3.check_in_guest(@guest4)
+  # Attempt to add another guest
+  @room3.check_in_guest(@guest5)
+  # Assert we return a max occupancy error
+  assert_equal(@room3.guests.length, @room3.max_occupancy)
+end
+
+
 
 
 
