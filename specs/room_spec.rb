@@ -49,17 +49,6 @@ class TestRoom < MiniTest::Test
     assert_equal(@room2.guests[0], @guest2)
   end
 
-  # def test_check_can_afford_entry_fee__false
-  #   #set up a room with higher entry fee than guest money
-  #   @room3.check_can_afford_entry_fee(@guest5)
-  #   assert_equal(@guest5.money,@room3.entry_fee)
-  #
-  # end
-  #
-  # def test_check_in_guest_entry_fee__true
-  #
-  # end
-
   def test_check_out_guest
     @room2.check_in_guest(@guest1)
     @room2.check_in_guest(@guest2)

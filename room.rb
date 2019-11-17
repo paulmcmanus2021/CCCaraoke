@@ -19,16 +19,15 @@ class Room
     # Ensure we are not at maximum occupancy
     if @guests.length >= @max_occupancy
       p "No more space."
-      return
+    end
+    #and the guest can afford the room
+    if guest.money < @entry_fee
+      p "Not enough money"
     end
 
-    # Ensure the guest has enough money to enter
-
-
-    # If the room has space and the guest has enough money
+    # If the room has space and can afford = true
     # add them to the room
     @guests.push(guest)
-
   end
 
   def check_out_guest(guest)
