@@ -63,17 +63,17 @@ class TestRoom < MiniTest::Test
     assert_equal(@song4.title, @room3.playlist[0].title)
   end
 
-# def test_max_occupancy
-#   # Fill room to max max_occupancy
-#   @room3.check_in_guest(@guest1)
-#   @room3.check_in_guest(@guest2)
-#   @room3.check_in_guest(@guest3)
-#   @room3.check_in_guest(@guest4)
-#   # Attempt to add another guest
-#   @room3.check_in_guest(@guest5)
-#   # Assert we return a max occupancy error
-#   assert_equal(@room3.guests.length, @room3.max_occupancy)
-end
+  def test_max_occupancy
+    # Fill room to max max_occupancy
+    @room3.check_in_guest(@guest1)
+    @room3.check_in_guest(@guest2)
+    @room3.check_in_guest(@guest3)
+    @room3.check_in_guest(@guest4)
+    # Attempt to add another guest
+    # Assert we return a max occupancy error
+    assert_equal(@room3.guests.length, @room3.max_occupancy)
+  end
+
 
 
 
@@ -92,4 +92,4 @@ end
 
 
 #
-# end
+end

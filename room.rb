@@ -24,7 +24,6 @@ class Room
     if guest.money < @entry_fee
       p "Not enough money"
     end
-
     # If the room has space and can afford = true
     # add them to the room
     @guests.push(guest)
